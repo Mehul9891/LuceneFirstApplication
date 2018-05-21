@@ -3,7 +3,9 @@ import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 
+import java.awt.*;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class LuceneTester {
 
@@ -14,10 +16,15 @@ public class LuceneTester {
 
     public static void main(String[] args) {
         LuceneTester tester;
+        Scanner scan = new Scanner(System.in);
         try {
             tester = new LuceneTester();
             tester.createIndex();
-            tester.search("Mohan");
+            String input;
+            while(!( input = scan.nextLine()).equals("exit")){
+                tester.search(input);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
